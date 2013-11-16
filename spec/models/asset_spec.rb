@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Asset do
 
-  describe PhotoUploader, focus: true do
+  describe PhotoUploader do
     include CarrierWave::Test::Matchers
 
     before do
