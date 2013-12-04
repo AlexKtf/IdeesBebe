@@ -9,8 +9,8 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
-    if @profile.asset.nil?
-      @profile.build_asset
+    if @profile.avatar.nil?
+      @profile.build_avatar
     end
   end
 

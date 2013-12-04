@@ -8,7 +8,7 @@ describe Profile do
 
     context 'with an avatar' do
       it 'returns true' do
-        subject.build_asset
+        subject.build_avatar
         subject.save!
         subject.send(:has_avatar?).should == true
       end

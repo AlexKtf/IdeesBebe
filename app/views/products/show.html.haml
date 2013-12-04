@@ -5,7 +5,7 @@
   %b Description:
   = @product.description
 
-- unless @product.assets.empty?
+- if @product.assets?
   #destroy_asset_link
     - @product.assets.each do |a|
       %div{id: "asset_#{a.id}"}
