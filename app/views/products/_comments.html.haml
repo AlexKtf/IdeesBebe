@@ -1,15 +1,14 @@
-- unless @product.comments.blank?
-  - @product.comments.each do |comment|
+- @product.comments.each do |comment|
+  %div
+    - if comment.user.avatar
+      = image_tag(comment.user.avatar.thumb.url, alt: comment.user.username, title: comment.user.username)
+    - else
+      = image_tag('default_avatar_thumb.png')
+  %div
+    = comment.user.username
+    %br
+    = comment.content
+  - if can? :destroy, comment
     %div
-      - if comment.user.avatar
-        = image_tag(comment.user.avatar.thumb.url, alt: comment.user.username, title: comment.user.username)
-      - else
-        = image_tag('default_avatar_thumb.png')
-    %div
-      = comment.user.username
-      %br
-      = comment.content
-    - if can? :destroy, comment
-      %div
-        = link_to 'Supprimer', comment_path(comment.id), method: :delete
+      = link_to 'Supprimer', comment_path(comment.id), method: :delete
 %br

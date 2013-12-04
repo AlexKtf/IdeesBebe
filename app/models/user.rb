@@ -25,6 +25,14 @@ class User < ActiveRecord::Base
   before_save :to_slug, :if => :username_changed?
 
 
+  def avatar
+    profile.avatar.nil? ? nil : profile.avatar.asset
+  end
+
+  def avatar_id
+    profile.avatar.id.nil? ? nil : profile.avatar.id
+  end
+
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
@@ -32,13 +40,5 @@ class User < ActiveRecord::Base
     else
       where(conditions).first
     end
-  end
-
-  def avatar
-    profile.asset.nil? ? nil : profile.asset.asset
-  end
-
-  def avatar_id
-    profile.asset.id.nil? ? nil : profile.asset.id
   end
 end
