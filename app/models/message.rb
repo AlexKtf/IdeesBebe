@@ -14,7 +14,6 @@ class Message < ActiveRecord::Base
   belongs_to :user
   belongs_to :product
 
-
   validates :content,
     length: {
       minimum: 2,
