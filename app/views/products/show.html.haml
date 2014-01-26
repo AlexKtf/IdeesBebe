@@ -20,11 +20,8 @@
 - if can? :create, @comment
   = render 'products/form_comments'
 
-- if current_user and current_user != @product.user and not current_user.waiting_response_for?(@product)
-  = simple_form_for Message.new do |f|
-    = f.input :content, label: 'Texte', as: :text
-    = f.hidden_field :product_id, value: @product.id
-    = f.hidden_field :receiver_id, value: @product.user.id
-    = f.button :submit, 'Contacter'
+- if can? :create, Message.new
+  = render @product.user != current_user ? 'products/form_message_buyer' : 'products/form_message_seller'
+
 
 = render 'products/comments'

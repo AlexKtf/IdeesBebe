@@ -60,4 +60,16 @@ class Product < ActiveRecord::Base
   def has_maximum_upload?
     assets.count == MAXIMUM_UPLOAD_PHOTO
   end
+
+  def last_message_with user
+    messages.where('sender_id = ? OR receiver_id = ?', user.id, user.id).order('created_at DESC').limit(1).try(:first)
+  end
+
+  def seller_pending_messages_count
+    count = 0
+    messages.where('sender_id != ?', user.id).pluck(:sender_id).uniq.each do |sender_id|
+      count += last_message_with(User.find(sender_id)).from_seller? ? 0 : 1
+    end
+    count
+  end
 end

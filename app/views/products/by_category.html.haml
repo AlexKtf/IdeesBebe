@@ -21,6 +21,6 @@
       - if can? :edit, product
         %td= link_to 'Edit', edit_product_path(product.slug)
       - if can? :destroy, product
-        %td= link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br

@@ -19,7 +19,7 @@ IdeesBebe::Application.routes.draw do
   get '/categories/:id' => 'products#by_category', as: 'products_by_categories'
   post '/profiles/:profile_id/products' => 'products#create', as: 'products'
 
-  resource :inbox, only: [:show, :create]
+  resources :inbox, only: [:show, :create]
 
   devise_for :user
   root 'welcome#index'

@@ -75,4 +75,67 @@ describe Product do
       end
     end
   end
+
+
+  describe '#last_message_with' do
+    let(:user2) { FactoryGirl.create :user }
+    let(:user) { FactoryGirl.create :user }
+    subject { FactoryGirl.create :product, user: user2 }
+
+    it 'returns nil' do
+      user
+      subject.last_message_with(user).should == nil
+    end
+
+    context 'with two messages' do
+      let(:msg) { FactoryGirl.create :message,  sender: user, receiver: user2, product: subject, content: 'test2' }
+      let(:msg2) { FactoryGirl.create :message,  sender: user, receiver: user2, product: subject, content: 'test1' }
+
+      it 'returns the newest' do
+        subject
+        msg
+        msg2
+        subject.last_message_with(user).content.should == msg2.content
+      end
+    end
+  end
+
+
+  describe '#seller_pending_messages_count' do
+    let(:user2) { FactoryGirl.create :user }
+    let(:user) { FactoryGirl.create :user }
+    subject { FactoryGirl.create :product, user: user2 }
+
+    it 'returns 0' do
+      user
+      subject.seller_pending_messages_count.should == 0
+    end
+
+    context 'with two messages' do
+      let(:user3) { FactoryGirl.create :user }
+      let(:msg) { FactoryGirl.create :message,  sender: user, receiver: user2, product: subject, content: 'test2' }
+      let(:msg2) { FactoryGirl.create :message,  sender: user3, receiver: user2, product: subject, content: 'test1' }
+      let(:msg3) { FactoryGirl.create :message,  sender: user3, receiver: user2, product: subject, content: 'test13' }
+
+      it 'returns 2' do
+        subject
+        msg
+        msg2
+        msg3
+        subject.seller_pending_messages_count.should == 2
+      end
+    end
+
+    context 'with one message which has already been respond' do
+      let(:msg) { FactoryGirl.create :message,  sender: user, receiver: user2, product: subject, content: 'test2' }
+      let(:msg2) { FactoryGirl.create :message,  sender: user2, receiver: user, product: subject, content: 'test1' }
+
+      it 'returns 0' do
+        subject
+        msg
+        msg2
+        subject.seller_pending_messages_count.should == 0
+      end
+    end
+  end
 end

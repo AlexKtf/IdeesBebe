@@ -17,14 +17,14 @@ main_categories = ["Vêtements, accessoires",
 main_categories.each do |name|
   main = Category.create(name: name)
   case name
-    when "Eveil & jeux"
-      Category.create([{ name: 'Peluches, doudous', main_category_id: main.id }, { name: 'Jouets 1er âge', main_category_id: main.id }])
-    when "Transport"
-      Category.create([{ name: 'Equipements de promenade', main_category_id: main.id }])
-    when "Maison"
-      Category.create([{ name: 'Sécurité', main_category_id: main.id },
-                       { name: 'Toilette, bain', main_category_id: main.id },
-                       { name: 'Repas, allaitement', main_category_id: main.id },
-                       { name: "Lits, équipements d'intérieur", main_category_id: main.id } ])
+  when "Eveil & jeux"
+    Category.create([{ name: 'Peluches, doudous', main_category_id: main.id }, { name: 'Jouets 1er âge', main_category_id: main.id }])
+  when "Transport"
+    Category.create([{ name: 'Equipements de promenade', main_category_id: main.id }])
+  when "Maison"
+    Category.create([{ name: 'Sécurité', main_category_id: main.id },
+                     { name: 'Toilette, bain', main_category_id: main.id },
+                     { name: 'Repas, allaitement', main_category_id: main.id },
+                     { name: "Lits, équipements d'intérieur", main_category_id: main.id } ])
   end
 end

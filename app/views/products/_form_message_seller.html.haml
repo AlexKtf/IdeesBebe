@@ -1,0 +1,5 @@
+- msg_count = @product.seller_pending_messages_count
+- if msg_count.zero?
+  Vous n'avez aucun messages
+- else
+  = "Vous avez #{msg_count} message(s) en attente(s)"
