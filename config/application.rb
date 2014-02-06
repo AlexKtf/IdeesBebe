@@ -20,8 +20,6 @@ module IdeesBebe
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.enforce_available_locales = true
-    I18n.default_locale = :fr
-
 
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.default_url_options = { host: 'dev-ideesbebe.herokuapp.com' }
@@ -33,5 +31,6 @@ module IdeesBebe
       domain: 'dev-ideesbebe.herokuapp.com',
       authentication: :plain
     }
+    I18n.default_locale = :en
   end
 end

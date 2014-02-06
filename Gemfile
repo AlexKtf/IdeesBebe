@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '>=4.0.0'
 gem 'devise'
 gem 'cancan'
+gem 'omniauth-facebook'
 
 # Use postgresql as the database for Active Record
 gem 'pg'

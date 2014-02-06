@@ -109,6 +109,9 @@ ActiveRecord::Schema.define(version: 20140131184407) do
     t.datetime "updated_at"
     t.string   "username"
     t.string   "slug"
+    t.string   "provider"
+    t.string   "fb_id"
+    t.string   "fb_tk"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

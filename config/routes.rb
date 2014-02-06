@@ -21,4 +21,8 @@ IdeesBebe::Application.routes.draw do
 
   resources :inbox, only: [:show, :create]
 
+  devise_for :user, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  root 'welcome#index'
+
+
 end

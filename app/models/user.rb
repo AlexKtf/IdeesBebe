@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   include Slugable
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
   validates :username,
     length: {
@@ -89,4 +89,27 @@ class User < ActiveRecord::Base
       where(conditions).first
     end
   end
+
+  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    user = User.where(:provider => auth.provider, :fb_id => auth.uid).first
+    if user
+      return user
+    else
+      registered_user = User.where(:email => auth.info.email).first
+      if registered_user
+        return registered_user
+      else
+
+        @user = User.create!(username:auth.info.name.strip, 
+                            provider:auth.provider,
+                            fb_id:auth.uid,
+                            email:auth.info.email,
+                            fb_tk:auth.credentials.token,
+                            password:Devise.friendly_token[0,20]
+                          )
+          
+      end
+    end
+  end
+
 end
