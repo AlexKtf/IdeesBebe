@@ -15,8 +15,10 @@ IdeesBebe::Application.routes.draw do
     resources :messages, only: [:create, :index, :show]
   end
 
+  resources :categories, only: [:show] do
+    get '/:id', action: :show_subcategory, as: 'subcategory'
+  end
 
-  get '/categories/:id' => 'products#by_category', as: 'products_by_categories'
   post '/profiles/:profile_id/products' => 'products#create', as: 'products'
 
   resources :inbox, only: [:show, :create]

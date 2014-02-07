@@ -53,12 +53,12 @@ describe MessagesController do
 
     it 'creates the message' do
       expect {
-        post :create, product_id: product.id, message: { sender_id: user2.id, content: 'test' }
+        post :create, product_id: product.id, message: { sender_id: user2.id, receiver_id: user.id, content: 'test' }
       }.to change{ Message.count }.by 1
     end
 
     it 'redirect to the product page' do
-      post :create, product_id: product.id, message: { sender_id: user2.id, content: 'test' }
+      post :create, product_id: product.id, message: { sender_id: user2.id, receiver_id: user.id, content: 'test' }
       response.should redirect_to product_path(product.slug)
     end
 

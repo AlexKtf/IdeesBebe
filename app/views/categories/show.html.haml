@@ -1,0 +1,30 @@
+%br
+- @category.subcategories.each do |category|
+  = link_to category.name, category_subcategory_path(@category.slug, category.slug)
+  
+%h1 Listing products
+
+%table
+  %tr
+    %th 
+    %th Name
+    %th Description
+    %th
+    %th
+    %th
+
+  - @products.each do |product|
+    %tr
+      - if product.starred_asset
+        %td= image_tag(product.starred_asset.thumb.url, alt: product.name, title: product.name)
+      - else
+        %td= image_tag('default_avatar_thumb.png')
+      %td= product.name.capitalize
+      %td= product.description
+      %td= link_to 'Show', product_path(product.slug)
+      - if can? :edit, product
+        %td= link_to 'Edit', edit_product_path(product.slug)
+      - if can? :destroy, product
+        %td= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br

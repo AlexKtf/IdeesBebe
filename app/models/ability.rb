@@ -20,7 +20,7 @@ class Ability
     end
 
     can :show, :all
-    can :by_category, Product
+    can :show_subcategory, Category
     can :index, Product
   end
 end

@@ -6,12 +6,7 @@ class ProductsController < ApplicationController
 
   def index
   end
-
-  def by_category
-    @category = Category.find_by_slug(params[:id])
-    return redirect_to '/404.html' if @category.nil?
-    @products = @category.all_products
-  end
+  
   # GET /products/1
   def show
     @comment = Comment.new

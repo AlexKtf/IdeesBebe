@@ -203,31 +203,6 @@ describe ProductsController do
     end
   end
 
-  describe '#by_category' do
-    let(:category) { FactoryGirl.create :category, main_category_id: main.id }
-    let(:main) { FactoryGirl.create :category}
-    let(:product) { FactoryGirl.create :product, name: "lol", owner: subject, category_id: category.id }
-
-    it 'assigns @products' do
-      Category.any_instance.stub(:all_products).and_return([product])
-      get :by_category, { id: main.slug }
-      assigns(:products).should_not be_empty
-    end
-
-    it 'render by_category template' do
-      get :by_category, { id: category.slug }
-      response.should render_template :by_category
-    end
-
-    context 'with an unknow category' do
-
-      it 'redirect to 404' do
-        get :by_category, { id: "Unknow-category" }
-        response.should redirect_to '/404.html'
-      end
-    end
-  end
-
   describe '#authorized_upload' do
 
     it 'raise an error with an unvalid asset' do

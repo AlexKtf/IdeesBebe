@@ -20,6 +20,6 @@
         = link_to 'Se connecter', new_user_session_path
 
     - Category::main_categories.each do |main|
-      %a{ href: products_by_categories_path(main.slug) }
+      %a{ href: category_path(main.slug) }
         = main.name
     = yield
