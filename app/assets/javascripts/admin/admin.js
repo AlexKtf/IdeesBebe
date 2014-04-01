@@ -17,4 +17,7 @@
 //= require semantic-ui/behavior/colorize
 //= require semantic-ui/behavior/form
 //= require semantic-ui/behavior/state
+//= require angular
+//= require angular-resource
+//= require_tree ../angular
 //= require_tree .

@@ -1,3 +1,24 @@
 %h4.ui.black.block.header
   %i.icon.suitcase
   Produits
+%div{ 'ng-controller' => 'ProductsCtrl' }
+  .ui.grid.product-list
+    .nine.column.wide
+      .ui.divided.list
+        .item{ 'ng-repeat' => 'product in products', 'ng-click' => 'showProduct(product, $index)', 'ng-class' => "{ active: $index == selectedRow }" }
+          .header
+            {{ product.name }}
+          {{ product.description }}
+          %br
+          Ajouté par {{ product.owner.username }}
+          %br
+          Disponible depuis le {{ product.created_at | date: 'dd-MM-yy' }}
+    .seven.column.wide
+      .selected-product{ 'ng-show' => 'selectedProduct' }
+        %h2.ui.header
+          {{ selectedProduct.name }}
+        %div
+          {{ selectedProduct.description }}
+        %ul
+          %li{ 'ng-repeat' => 'photo in selectedProduct.photos' }
+            %img{ 'ng-src' => "{{ photo.file.url }}" }
