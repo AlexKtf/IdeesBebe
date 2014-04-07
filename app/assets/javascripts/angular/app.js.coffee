@@ -1,1 +1,1 @@
-window.App = angular.module('Admin', ['ngResource'])
+window.App = angular.module('Admin', ['ngResource', 'ngAnimate'])

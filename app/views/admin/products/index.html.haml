@@ -4,15 +4,21 @@
 %div{ 'ng-controller' => 'ProductsCtrl' }
   .ui.grid.product-list
     .nine.column.wide
+      %label Recherche :
+      %input{ type: 'text', 'ng-model' => 'searchText.name' }
+      %button.ui.button.mini{ 'ng-click' => 'allowedFilter()', 'ng-class' => "{ active: selectedFilter == 'none' }" }Tous
+      %button.ui.button.mini{ 'ng-click' => 'allowedFilter(true)', 'ng-class' => "{ active: selectedFilter == true }" }Autorisés
+      %button.ui.button.mini{ 'ng-click' => 'allowedFilter(null)', 'ng-class' => "{ active: selectedFilter == null }" }En attente
+      %button.ui.button.mini{ 'ng-click' => 'allowedFilter(false)', 'ng-class' => "{ active: selectedFilter == false }" }Bloqués
+      %span.right
+        {{ products.length }}
       .ui.divided.list
-        .item{ 'ng-repeat' => 'product in products', 'ng-click' => 'showProduct(product, $index)', 'ng-class' => "{ active: $index == selectedRow }" }
+        .item{ 'ng-repeat' => 'product in products | filter:searchText', 'ng-click' => 'showProduct(product, $index)', 'ng-class' => "{ active: $index == selectedRow }" }
           .header
             {{ product.name }}
-          {{ product.description }}
-          %br
-          Ajouté par {{ product.owner.username }}
-          %br
-          Disponible depuis le {{ product.created_at | date: 'dd-MM-yy' }}
+          .product-details
+            %span Ajouté par {{ product.owner.username }}
+            %span Dernière mise à jour {{ product.updated_at | date: 'dd-MM-yy' }}
     .seven.column.wide
       .selected-product{ 'ng-show' => 'selectedProduct' }
         %h2.ui.header

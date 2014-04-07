@@ -19,5 +19,6 @@
 //= require semantic-ui/behavior/state
 //= require angular
 //= require angular-resource
+//= require angular-animate
 //= require_tree ../angular
 //= require_tree .
