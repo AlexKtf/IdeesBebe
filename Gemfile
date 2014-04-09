@@ -14,7 +14,6 @@ gem 'delayed_job_active_record'
 
 # Email
 gem 'mandrill-rails'
-gem 'email_reply_parser'
 
 # Upload
 gem 'cloudinary'
@@ -34,6 +33,8 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'jbuilder', '>= 1.2'
+gem 'angularjs-rails'
+
 
 gem 'coveralls', require: false
 

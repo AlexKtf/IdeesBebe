@@ -26,8 +26,6 @@ IdeesBebe::Application.routes.draw do
     get '/:id', action: :show_subcategory, as: 'subcategory'
   end
 
-  resources :inbox, only: [:show, :create]
-
   devise_scope :user do
     get '/admin', to: 'admin/sessions#new'
     post '/admin', to: 'admin/sessions#create'
