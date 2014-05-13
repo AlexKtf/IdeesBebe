@@ -198,12 +198,4 @@ describe ProductsController do
       end
     end
   end
-
-  describe '#authorized_upload' do
-
-    it 'raise an error with an unvalid asset' do
-      Photo.any_instance.stub(:new).and_return(nil)
-      controller.authorized_upload 'test'
-    end
-  end
 end

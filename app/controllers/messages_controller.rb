@@ -15,14 +15,15 @@ class MessagesController < ApplicationController
   end
 
   def create
-    status = message_params[:status_id].present? ? Status.find(message_params[:status_id]) : @product.status.create!(user_id: current_user.id)
+    status = message_params[:status_id].present? ? Status.find(message_params[:status_id]) : @product.status.build(user_id: current_user.id)
+    status.save! if current_user.messages_sent.build(message_params).valid?
     message = status.messages.build(message_params.merge(sender_id: current_user.id))
     if message.save
       flash[:notice] = I18n.t('message.create.success')
     elsif message.errors.any?
-      flash[:error] = message.errors.first[1]
+      flash[:alert] = message.errors.first[1]
     else
-      flash[:error] = I18n.t('message.create.error')
+      flash[:alert] = I18n.t('message.create.error')
     end
     
     redirect_to :back

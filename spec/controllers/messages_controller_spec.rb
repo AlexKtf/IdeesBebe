@@ -87,10 +87,8 @@ describe MessagesController do
     context 'with an incorrect message' do
 
       it 'raise an error' do
-        Message.any_instance.stub(:save).and_return(false)
-        Message.any_instance.stub(:errors).and_return([:content, "Too short"])
         post :create, product_id: product.id, message: { sender_id: user2.id, content: '' }
-        flash[:error].should_not be_nil
+        flash[:alert].should_not be_nil
       end
     end
 
@@ -98,9 +96,8 @@ describe MessagesController do
 
       it 'raise an error' do
         Message.any_instance.stub(:save).and_return(false)
-        Message.any_instance.stub(:errors).and_return([])
         post :create, product_id: product.id, message: { sender_id: user2.id, content: 'test' }
-        flash[:error].should_not be_nil
+        flash[:alert].should_not be_nil
       end
     end
   end
