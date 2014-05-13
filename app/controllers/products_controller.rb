@@ -41,7 +41,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   def update
     if @product.update(product_params)
-      redirect_to edit_product_path(@product.slug), notice: I18n.t('product.update.success')
+      redirect_to product_path(@product.slug), notice: I18n.t('product.update.success')
     else
       @cat = @product.category_id_was
       render action: :edit

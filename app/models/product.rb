@@ -19,7 +19,7 @@ class Product < ActiveRecord::Base
 
   include Slugable
 
-  enum state: [ :avalaible, :selled, :disallowed ]
+  enum state: [:avalaible, :selled, :disallowed]
 
   MAXIMUM_UPLOAD_PHOTO = 2
 

@@ -16,10 +16,12 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       format.html do
-        authorized_upload(profile_params[:avatar]) if profile_params[:avatar].present?
-        if @profile.update(profile_params)
-          flash[:notice] = I18n.t('profile.update.success')
+        if profile_params[:avatar].present? and Photo.new(file: profile_params[:avatar]).valid?
+          flash[:alert] = I18n.t('upload.error.integrity')
           redirect_to edit_profile_path(@user.slug)
+        elsif @profile.update(profile_params)
+          flash[:notice] = I18n.t('profile.update.success')
+          redirect_to profile_path(@user.slug)
         else
           render :edit
         end
@@ -28,7 +30,8 @@ class ProfilesController < ApplicationController
         if Photo.new(file: profile_params[:avatar]).valid?
           @profile.update!(profile_params)
         else
-          @error = I18n.t('upload.error.integrity')
+          flash[:alert] = I18n.t('upload.error.integrity')
+          render js: "window.location = '#{edit_profile_path(@user.slug)}'"
         end
       end
     end

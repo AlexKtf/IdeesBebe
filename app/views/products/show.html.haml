@@ -32,7 +32,7 @@
             - unless current_user.is_owner_of? @product
               = simple_form_for @product.reports.build, url: product_reports_path(@product.slug) do |f|
                 = f.button :submit, I18n.t('common.signal')
-          - else
+          - elsif @product.disallowed?
             .signaled
               %i.icon.checkmark
               = I18n.t('common.signaled')
@@ -43,10 +43,12 @@
       .ui.list
         .item#owner
           .ui.image.small
-            = image_tag @user.avatar
+            = link_to profile_path(@user.slug) do
+              = image_tag @user.avatar
           .content
             .header
-              = @user.username
+              = link_to profile_path(@user.slug) do
+                = @user.username
             %span
               %i.icon.map.marker
               Paris

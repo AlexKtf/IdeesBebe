@@ -152,7 +152,7 @@ describe ProductsController do
 
         it 'redirect_to #show' do
           put :update, { id: product.id, product: {name: "Great thing", description: "SO Great!"} }
-          response.should redirect_to edit_product_path(product.reload.slug)
+          response.should redirect_to product_path(product.reload.slug)
         end
       end
 

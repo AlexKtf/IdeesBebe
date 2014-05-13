@@ -13,10 +13,6 @@ class ApplicationController < ActionController::Base
     redirect_to forbidden_path
   end
 
-  def authorized_upload file
-    raise CarrierWave::IntegrityError unless Photo.new(file: file).valid?
-  end
-  
   protected
 
   def configure_permitted_parameters

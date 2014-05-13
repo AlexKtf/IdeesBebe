@@ -17,7 +17,7 @@ class PhotosController < ApplicationController
     respond_to do |format|
       format.html { redirect_to edit_product_path(@product.slug) }
       format.js do
-        if not flash[:alert].empty?
+        if flash and not flash[:alert].empty?
           render js: "window.location = '#{edit_product_path(@product.slug)}'"
         else
           @index = params[:index]
