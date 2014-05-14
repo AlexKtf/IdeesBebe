@@ -52,5 +52,6 @@ group :development, :test do
   gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
   gem 'selenium-webdriver', '>= 2.35.1'
 end
+gem 'codeclimate-test-reporter', group: :test, require: nil
 
 ruby '2.0.0'
