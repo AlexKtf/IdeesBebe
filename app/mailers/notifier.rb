@@ -31,6 +31,18 @@ class Notifier < ActionMailer::Base
     )
   end
 
+  def product_not_available_anymore(users, product)
+    first_user = users.shift
+    @product = product
+    @subject = I18n.t('notifier.product_not_available_anymore.subject', product: @product.name)
+    mail(
+      from: 'Idees Bebe <#product.owner.slug}@user.dev-ideesbebe.com>',
+      to: first_user,
+      bcc: users,
+      subject: @subject
+    )
+  end
+
   def admin_need_to_check product
     @product = product
     @subject = I18n.t('notifier.admin_need_to_check.subject', product: @product.name)

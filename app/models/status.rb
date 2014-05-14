@@ -19,7 +19,7 @@ class Status < ActiveRecord::Base
 
   MESSAGE_LIMIT_STRAIGHT = 2
 
-  before_update :mark_product_as_selled, if: [:done_changed?, :done]
+  after_update :mark_product_as_selled, if: [:done_changed?, :done]
 
   scope :pending, ->(user) { where('products.state = ?', 0).reject{ |status| status.last_message.sender_id == user.id or status.closed } }
   scope :archived, ->() { select{ |status| status.closed or status.product.selled? } }
@@ -27,6 +27,10 @@ class Status < ActiveRecord::Base
   def mark_product_as_selled
     product.selled!
     Notifier.delay.signalized_as_buyer(user, product)
+    others = User.joins(:status)
+              .where('statuses.product_id = ? AND users.id != ?', product_id, user_id)
+              .pluck(:email)
+    Notifier.delay.product_not_available_anymore(others, product)
   end
 
   def pending_messages_count
