@@ -78,8 +78,13 @@
           = render current_user.is_owner_of?(@product) ? 'form_message_seller' : 'form_message_buyer'
         - else
           .row
-            .ui.message.purple
-              Connectez-vous pour contacter le vendeur
+            %h3.ui.header.block.black
+              %i.icon.chat
+              Contacter le vendeur
+            .no-replied-yet
+              = link_to 'Inscrivez-vous', new_user_registration_path
+              ou
+              = link_to 'connectez-vous', new_user_session_path
 = render 'comments'
 - if can? :create, @comment
   = render 'form_comments'
