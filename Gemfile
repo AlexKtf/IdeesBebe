@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.0'
+gem 'rails', '4.1.1'
 gem 'devise'
 gem 'cancan'
 gem 'omniauth-facebook'
@@ -37,7 +37,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '>= 2.0'
 gem 'remotipart'
 
-gem 'jwt', '0.1.11'
+gem 'jwt', '1.0.0'
 
 gem 'coveralls', require: false
 
