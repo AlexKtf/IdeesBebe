@@ -5,6 +5,7 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1
   def show
+    @products = @user.products.includes(:category).page(params[:page])
   end
 
   # GET /profiles/1/edit

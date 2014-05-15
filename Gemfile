@@ -1,25 +1,26 @@
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
 gem 'devise'
 gem 'cancan'
 gem 'omniauth-facebook'
 
-# Use postgresql as the database for Active Record
 gem 'pg'
-gem 'rails_12factor', group: :production
 gem 'unicorn'
 gem 'delayed_job_active_record'
 
+gem 'rails_12factor', group: :production
+
 # Email
 gem 'mandrill-rails'
-gem 'email_reply_parser'
 
-# Upload
+# Upload Image
 gem 'cloudinary'
 gem 'carrierwave'
 gem 'mini_magick'
+
+# Paginate
+gem 'kaminari'
 
 # CSS
 gem 'sass-rails', '~> 4.0.0'

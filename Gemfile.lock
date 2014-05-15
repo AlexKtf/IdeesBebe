@@ -105,7 +105,6 @@ GEM
     dotenv-deployment (0.0.2)
     dotenv-rails (0.11.1)
       dotenv (= 0.11.1)
-    email_reply_parser (0.5.5)
     erubis (2.7.0)
     execjs (2.0.2)
     factory_girl (4.4.0)
@@ -135,6 +134,9 @@ GEM
     json (1.8.1)
     jwt (0.1.11)
       multi_json (>= 1.5)
+    kaminari (0.15.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     kgio (2.9.2)
     libv8 (3.16.14.3)
     mail (2.5.4)
@@ -289,12 +291,12 @@ DEPENDENCIES
   delayed_job_active_record
   devise
   dotenv-rails
-  email_reply_parser
   factory_girl_rails (>= 4.0)
   haml-rails
   jbuilder (>= 2.0)
   jquery-rails
   jwt (= 0.1.11)
+  kaminari
   mandrill-rails
   mini_magick
   omniauth-facebook

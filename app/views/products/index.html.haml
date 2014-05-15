@@ -53,4 +53,4 @@
                           %i.icon.settings
                         = link_to product_status_index_path(product.slug), class: 'ui button starpop list-button', 'data-content' => I18n.t('common.my_contacts'), 'data-variation' => 'inverted' do
                           %i.icon.users
-
+        = paginate @products
