@@ -36,7 +36,7 @@
     %i.icon.suitcase
     = "Les produits de #{@user.username}"
   .ui.grid.four.column.profile-products
-    - @user.products.includes(:category).each do |product|
+    - @products.each do |product|
       .column
         = link_to product_path(product.slug) do
           .ui.segment.index-product.hoverable
@@ -48,3 +48,4 @@
               %b= product.name.capitalize
             .row.product-category
               = product.category.name.capitalize
+  = paginate @products

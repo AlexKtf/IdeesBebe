@@ -41,6 +41,8 @@ class Product < ActiveRecord::Base
 
   before_save :to_slug, if: :name_changed?
 
+  paginates_per 24
+
   def slug
     "#{id}-#{super}"
   end
