@@ -1,0 +1,25 @@
+%h3.ui.header.block.black
+  %i.icon.chat
+  Mes contacts
+.row
+  .ui.grid.three.column.stackable
+    - @product.status.joins(:user).each do |status|
+      .column
+        .ui.segment.product-status
+          - unless status.pending_messages_count.zero?
+            .ui.purple.corner.left.label
+              %span= status.messages.count
+              %i.icon.chat
+          = link_to profile_path(status.user.slug) do
+            = image_tag status.user.avatar.url
+          .row
+            = link_to profile_path(status.user.slug) do
+              = status.user.username
+          .row
+            .ui.buttons
+              - if @product.selled?
+                = link_to product_status_index_path(@product.slug), class: 'ui button starpop eye-button', 'data-content' => I18n.t('common.resee'), 'data-variation' => 'inverted' do
+                  %i.icon.unhide
+              - else
+                = link_to product_status_path(product_id: @product.slug, id: status.user.slug), class: 'ui button status-link' do
+                  = I18n.t('status.see_conversation')
