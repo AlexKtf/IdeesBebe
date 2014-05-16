@@ -15,7 +15,6 @@ fr:
     price: 'Prix'
     description: 'Description'
     category: 'Categorie'
-    comment: 'Commentaire'
     contact: 'Contacter'
     respond: 'Répondre'
     resee: 'Revoir'
@@ -219,13 +218,6 @@ fr:
     become_starred:
       success: 'La photo mise en avant a bien été mise à jour'
       error: "Une erreur s'est produite"
-  comment:
-    create:
-      error: "Votre commentaire n'est pas correcte"
-      success: 'Votre commentaire à bien été enregistré'
-    destroy:
-      error: "Une erreur s'est produite"
-      success: 'Votre commentaire à bien été supprimé'
   message:
     content:
       presence: 'Un message est nécessaire'

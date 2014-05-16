@@ -41,7 +41,6 @@ class User < ActiveRecord::Base
   has_one :profile, dependent: :destroy
 
   has_many :products, dependent: :destroy
-  has_many :comments, dependent: :destroy
 
   has_many :status
 
