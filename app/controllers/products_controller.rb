@@ -14,7 +14,6 @@ class ProductsController < ApplicationController
   
   # GET /products/1
   def show
-    @comment = Comment.new
     @status = @product.status.find_by(user_id: current_user.id) if user_signed_in? and not current_user.is_owner_of? @product
     @user = @product.owner
   end

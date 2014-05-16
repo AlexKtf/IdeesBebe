@@ -66,29 +66,10 @@ describe User do
 
       before(:each) { user.stub(:new_record?).and_return(false) }
 
-      context 'concerning a comment' do
-
-        it 'can :create a comment' do
-          ability.should be_able_to(:create, Comment.new)
-        end
-
-        it 'can :destroy his comment' do
-          ability.should be_able_to(:destroy, Comment.new(user: user))
-        end
-
-        it 'cannot :destroy comment from another' do
-          ability.should_not be_able_to(:destroy, Comment.new(user: user2))
-        end
-      end
-
       context 'concerning a user' do
 
         it 'can :destroy his account' do
           ability.should be_able_to(:destroy, user)
-        end
-
-        it 'cannot :destroy comment from another' do
-          ability.should_not be_able_to(:destroy, user2)
         end
       end
 

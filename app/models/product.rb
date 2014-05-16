@@ -27,7 +27,6 @@ class Product < ActiveRecord::Base
   belongs_to :category
 
   has_many :photos, dependent: :destroy
-  has_many :comments, dependent: :destroy
   has_many :status
   has_many :messages, through: :status
   has_many :reports, dependent: :destroy

@@ -7,10 +7,8 @@ class Ability
       can :manage, [Profile, Product], user_id: user.id
 
       can [:destroy, :update], Photo, product: { user_id: user.id }
-      can :destroy, Comment, user_id: user.id
       can :destroy, User, id: user.id
 
-      can :create, Comment
       can :create, Message
       can :read, Message
       
