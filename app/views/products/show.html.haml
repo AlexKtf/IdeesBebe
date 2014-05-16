@@ -36,6 +36,9 @@
             .signaled
               %i.icon.checkmark
               = I18n.t('common.signaled')
+      .row
+        - if user_signed_in?
+          = render current_user.is_owner_of?(@product) ? 'seller_contacts' : 'form_message_buyer'
     .ui.six.wide.column.details
       %h3.ui.header.block.black.header-user
         %i.icon.user
@@ -74,9 +77,7 @@
           %p
             %b= response_time.zero? ? 'Indéfini' : distance_of_time_in_words(response_time)
       .row.responsetime
-        - if user_signed_in?
-          = render current_user.is_owner_of?(@product) ? 'form_message_seller' : 'form_message_buyer'
-        - else
+        - unless user_signed_in?
           .row
             %h3.ui.header.block.black
               %i.icon.chat
