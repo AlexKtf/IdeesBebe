@@ -1,9 +1,0 @@
-#admin-connect.ui.segment
-  = semantic_flash
-  %h2 Administration
-  = simple_form_for User.new, as: :user, url: admin_path do |f|
-    = f.input :login, required: false, autofocus: true
-    = f.input :password, required: false
-    = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-    .form-actions
-      = f.button :submit, "Se connecter"
