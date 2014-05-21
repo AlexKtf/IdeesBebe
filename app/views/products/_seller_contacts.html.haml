@@ -8,9 +8,9 @@
         .ui.segment.product-status
           - unless status.pending_messages_count.zero?
             .ui.purple.corner.left.label
-              %span= status.messages.count
+              %span= status.pending_messages_count
               %i.icon.chat
-          = link_to profile_path(status.user.slug) do
+          = link_to product_status_path(product_id: @product.slug, id: status.user.slug) do
             = image_tag status.user.avatar.url
           .row
             = link_to profile_path(status.user.slug) do

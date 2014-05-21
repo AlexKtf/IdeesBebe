@@ -25,10 +25,19 @@ class MessagesController < ApplicationController
     else
       flash[:alert] = I18n.t('message.create.error')
     end
-    
-    redirect_to :back
-    rescue ActionController::RedirectBackError
-      redirect_to product_path(@product.slug)
+
+    respond_to do |format|
+      format.html do
+        begin
+          redirect_to :back
+        rescue ActionController::RedirectBackError
+          redirect_to product_path(@product.slug)
+        end
+      end
+      format.js do
+        @message = message
+      end
+    end    
   end
 
   private

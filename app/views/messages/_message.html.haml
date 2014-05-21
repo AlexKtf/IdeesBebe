@@ -1,0 +1,10 @@
+.comment{ style: "text-align: #{align};" }
+  = link_to profile_path(message.sender.slug), class: 'author' do
+    .avatar{ style: "text-align: #{align}" }
+      = image_tag message.sender.avatar.thumb.url
+  .content
+    = link_to profile_path(message.sender.slug), class: 'author' do
+      = message.sender.username
+    .metadata
+      %span.date= "Il y a #{distance_of_time_in_words(Time.zone.now - message.created_at)}"
+    .text= message.content
