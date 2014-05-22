@@ -51,7 +51,7 @@ class Product < ActiveRecord::Base
   end
 
   def starred_asset
-    photos.where(starred: true).first.try(:file) || Photo.new.file
+    photos.where(starred: true).first.try(:file)
   end
 
   def pending_status_for_owner
