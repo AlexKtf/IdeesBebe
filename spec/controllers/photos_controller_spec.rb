@@ -93,49 +93,4 @@ describe PhotosController do
       end
     end
   end
-
-  describe 'PUT #update' do
-    let(:photo2) { FactoryGirl.create :photo, product: product }
-    subject { FactoryGirl.create :photo, product: product }
-
-    context 'with my product' do
-      it 'unstars the other starred photo' do
-        photo2
-        subject
-        put :update, { id: subject.id, photo: { starred: true } }       
-        photo2.reload.starred.should == false
-      end
-
-      it 'stars the photo' do
-        photo2
-        subject
-        put :update, { id: subject.id, photo: { starred: true } }
-        subject.reload.starred.should == true
-      end
-
-      it 'redirect to #edit' do
-        subject
-        put :update, { id: subject.id, photo: { starred: true } }
-        response.should redirect_to edit_product_path(product.slug)
-      end
-
-      context 'with a failed changed' do
-        it 'flash an error' do
-          Photo.any_instance.stub(:update).and_return(false)
-          subject
-          put :update, { id: subject.id, photo: { starred: true } }
-          flash[:alert].should_not be_nil
-        end
-      end
-    end
-
-    context 'with product from other' do
-      let(:photo2) { FactoryGirl.create :photo, product: product2 }
-
-      it 'redirect to forbidden' do
-        put :update, { id: photo2.id }
-        response.should redirect_to forbidden_path
-      end
-    end
-  end
 end

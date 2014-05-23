@@ -39,26 +39,6 @@ describe Product do
     end
   end
 
-
-  describe '#starred_asset' do
-
-    context 'with photos' do
-      let(:asset) { FactoryGirl.create :photo, product: subject, starred: true }
-
-      it 'return the starred asset' do
-        asset
-        subject.starred_asset.model.id.should == asset.id
-      end
-    end
-
-    context 'with no photos' do
-
-      it 'return nil' do
-        subject.starred_asset.should == nil
-      end
-    end
-  end
-
   describe '#pending_status_for_owner' do
     let(:user2) { FactoryGirl.create :user }
     let(:user) { FactoryGirl.create :user }

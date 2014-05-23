@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 20140516175710) do
   create_table "photos", force: true do |t|
     t.integer  "product_id"
     t.string   "file"
-    t.boolean  "starred"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

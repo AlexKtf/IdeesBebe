@@ -73,9 +73,6 @@ fr:
       zero: '0 conversation en attente'
       one: '1 conversation en attente'
       other: '%{count} conversations en attentes'
-  photos:
-    starred: 'Photo mis en avant'
-    not_starred: 'Mettre en avant'
 
   activerecord:
     errors:
@@ -214,9 +211,6 @@ fr:
       error: "Une erreur s'est produite"
     destroy:
       success: 'La photo à bien été supprimé'
-      error: "Une erreur s'est produite"
-    become_starred:
-      success: 'La photo mise en avant a bien été mise à jour'
       error: "Une erreur s'est produite"
   message:
     content:

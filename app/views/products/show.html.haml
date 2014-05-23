@@ -94,7 +94,7 @@
           = link_to product_path(product.slug) do
             .item.recommended
               - if product.photos.any?
-                = image_tag product.starred_asset, class: 'ui avatar'
+                = image_tag product.photos.first.file.thumb, class: 'ui avatar'
               - else
                 = image_tag 'product_thumb_default.png', class: 'ui avatar'
               .content

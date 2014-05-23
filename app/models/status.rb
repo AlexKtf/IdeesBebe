@@ -5,8 +5,8 @@
 #  id         :integer          not null, primary key
 #  product_id :integer
 #  user_id    :integer
-#  closed     :boolean
-#  done       :boolean
+#  closed     :boolean          default(FALSE)
+#  done       :boolean          default(FALSE)
 #  created_at :datetime
 #  updated_at :datetime
 #  satisfied  :boolean
