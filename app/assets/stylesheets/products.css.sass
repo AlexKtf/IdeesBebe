@@ -102,7 +102,7 @@
   .new_report
     margin-top: 50px
     .button
-      font-size: 12px
+      font-size: 10px
   .signaled
     font-size: 14px
     margin-top: 50px
@@ -176,6 +176,57 @@
         width: auto
       span
         font-size: 16px
+  .comments
+    height: 330px !important
+    overflow: auto
+    &:hover
+      overflow: auto
+    .comment
+      margin: 20px 0
+      width: 100%
+      img
+        border-radius: 5px
+      a
+        font-size: 16px
+        color: hsl(0, 0%, 40%)
+        &:hover
+          color: hsl(0, 0%, 40%)
+      .date
+        font-size: 12px
+        line-height: 10px
+      .text
+        font-size: 14px
+        padding-left: 64px
+        padding-right: 16px
+  .list
+    .recommended
+      padding-left: 5px
+      border-radius: 5px
+      color: hsl(0, 0%, 40%)
+      img
+        border-radius: 5px
+      &:hover
+        background: hsl(0, 0%, 96%)
+      .content
+        margin-top: 10px
+        height: 90px
+        position: relative
+        width: 70%
+        &:hover
+          .header
+            text-decoration: underline
+      .price,
+      i
+        color: hsl(298, 32%, 45%)
+        font-size: 18px
+      .price
+        position: absolute
+        right: 0
+        bottom: 0
+        text-align: right
+  .no-contact
+    text-align: center
+    color: grey
 
   .responsetime
     margin-top: 15px

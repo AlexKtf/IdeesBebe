@@ -16,6 +16,7 @@ class ProductsController < ApplicationController
   def show
     @status = @product.status.find_by(user_id: current_user.id) if user_signed_in? and not current_user.is_owner_of? @product
     @user = @product.owner
+    @recommended_product = @product.category.products.where('products.id!= ?', @product.id).limit(7)
   end
 
   # GET /profiles/:profile_id/products/new

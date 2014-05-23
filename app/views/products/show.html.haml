@@ -38,7 +38,16 @@
               = I18n.t('common.signaled')
       .row
         - if user_signed_in?
-          = render current_user.is_owner_of?(@product) ? 'seller_contacts' : 'form_message_buyer'
+          = render current_user.is_owner_of?(@product) ? 'seller_contacts' : 'buyer_contact'
+        - else
+          .row.responsetime
+            %h3.ui.header.block.black
+              %i.icon.chat
+              Contacter le vendeur
+            .no-replied-yet
+              = link_to 'Inscrivez-vous', new_user_registration_path
+              ou
+              = link_to 'connectez-vous', new_user_session_path
     .ui.six.wide.column.details
       %h3.ui.header.block.black.header-user
         %i.icon.user
@@ -76,13 +85,21 @@
             %b= satisfaction.nil? ? 'Indéfini' : number_to_percentage(satisfaction, precision: 0)
           %p
             %b= response_time.zero? ? 'Indéfini' : distance_of_time_in_words(response_time)
-      .row.responsetime
-        - unless user_signed_in?
-          .row
-            %h3.ui.header.block.black
-              %i.icon.chat
-              Contacter le vendeur
-            .no-replied-yet
-              = link_to 'Inscrivez-vous', new_user_registration_path
-              ou
-              = link_to 'connectez-vous', new_user_session_path
+
+      %h3.ui.header.block.black
+        %i.icon.suitcase
+        Autres produits
+      .ui.list
+        - @recommended_product.each do |product|
+          = link_to product_path(product.slug) do
+            .item.recommended
+              - if product.photos.any?
+                = image_tag product.starred_asset, class: 'ui avatar'
+              - else
+                = image_tag 'product_thumb_default.png', class: 'ui avatar'
+              .content
+                .header= product.name.truncate(20)
+                .price
+                  = product.price
+                  %i.icon.euro
+

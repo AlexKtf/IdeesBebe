@@ -2,7 +2,7 @@
   %h3.ui.header.block.black
     %i.icon.suitcase
     = @category.name
-  .ui.grid.six.column.stackable
+  .ui.grid.five.column.stackable
     - @products.each do |product|
       .column.product-card
         = link_to product_path(product.slug) do

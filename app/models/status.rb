@@ -17,7 +17,7 @@ class Status < ActiveRecord::Base
   belongs_to :user
   has_many :messages
 
-  MESSAGE_LIMIT_STRAIGHT = 2
+  MESSAGE_LIMIT_STRAIGHT = 50
 
   after_update :mark_product_as_selled, if: [:done_changed?, :done]
 

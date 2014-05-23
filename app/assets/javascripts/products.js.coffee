@@ -18,3 +18,7 @@ $ ->
       stretchImages: true,
       thumbnailIndicators: true,
       thumbnailProperty: 'thumbnail'
+
+  if $('#conversation').length > 0
+    $conversation = $('#conversation')
+    $conversation.scrollTop($conversation.scrollTop() - $conversation.offset().top + $('.comments .comment:last-child').offset().top)
