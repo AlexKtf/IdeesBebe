@@ -1,3 +1,5 @@
 $last_message = $("#conversation .comment").last()
-$last_message.append("<%= j render(partial: 'messages/message', locals: { message: @message, align: 'left'}) %>").fadeIn()
+$last_message.append("<%= j render(partial: 'messages/message', locals: { message: @message, align: 'left'}) %>")
+$conversation = $('#conversation')
+$conversation.scrollTop($conversation.scrollTop() - $conversation.offset().top + $('.comments .comment:last-child').offset().top)
 $('#message_content').val('')
