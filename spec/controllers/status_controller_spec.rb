@@ -51,11 +51,11 @@ describe StatusController do
 
     end
 
-    it 'redirects to index' do
+    it 'redirects to show' do
       connect
       message
       put :update, product_id: product.slug, id: user2.slug, status: { done: true }
-      response.should redirect_to product_status_index_path(product.slug)
+      response.should redirect_to product_status_path(product.slug, user2.slug)
     end
 
     context 'with product of another' do
@@ -64,31 +64,6 @@ describe StatusController do
         sign_in user2
         message
         put :update, product_id: product.slug, id: user2.slug, status: { closed: true }
-        response.should redirect_to forbidden_path
-      end
-    end
-  end
-
-  describe '#index' do
-    let(:message3) { FactoryGirl.create :message, status: status3, sender_id: user3.id, receiver_id: user.id }
-
-    it 'assigns @status' do
-      connect
-      message
-      message2
-      message3
-      get :index, product_id: product.slug
-      assigns(:status).should == [status2, status3]
-    end
-
-    context 'with product of another' do
-
-      it 'redirects to forbidden' do
-        sign_in user2
-        message
-        message2
-        message3
-        get :index, product_id: product.slug
         response.should redirect_to forbidden_path
       end
     end
