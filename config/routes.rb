@@ -10,7 +10,7 @@ IdeesBebe::Application.routes.draw do
 
   resources :products, only: [] do
     resources :photos, only: [:destroy, :update, :create], shallow: true
-    resources :status, only: [:index, :show, :update]
+    resources :status, only: [:show, :update]
     resources :messages, only: :create
     resources :reports, only: :create
   end

@@ -38,6 +38,7 @@ class MessagesController < ApplicationController
       format.js do
         flash.clear
         @message = message
+        @status = status
       end
     end    
   end

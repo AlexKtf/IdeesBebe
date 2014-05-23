@@ -1,5 +1,4 @@
 - name = current_user.is_owner_of?(@product) ? @user.username : current_user.username
-- link = current_user.username == name ? product_path(@product.slug) : product_status_index_path(@product.slug)
 #conversation
   .ui.grid.stackable
     .row
@@ -9,7 +8,7 @@
           = I18n.t('common.my_conversation_with', name: name)
         .about
           = current_user.is_owner_of?(@product) ? I18n.t('messages.index.about_my_product_cap') : I18n.t('messages.index.about_product_of_another_cap') 
-          = link_to @product.name, link
+          = link_to @product.name, product_path(@product.slug)
           - if current_user.is_owner_of?(@product) and not @product.selled? and not @status.closed
             .closed-button.right
               = simple_form_for @status, url: product_status_path(product_id: @product.slug, id: @user.slug), method: :put, remote: true do |f|
