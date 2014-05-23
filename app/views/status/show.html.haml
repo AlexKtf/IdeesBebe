@@ -46,7 +46,7 @@
                 = render 'status_done'
               - elsif @status.closed
                 = render 'status_closed'
-              - elsif @status.can_send_message? current_user
+              - else
                 = simple_form_for Message.new, url: product_messages_path(product_id: @product.id), class: 'ui reply form' do |f|
                   = f.input :content, label: '', as: :text
                   = f.hidden_field :receiver_id, value: @receiver.id
@@ -54,6 +54,3 @@
                   = f.button :button, class: 'ui fluid purple labeled submit icon button' do
                     %i.icon.edit
                     = I18n.t('common.respond')
-              - else
-                .status-situation
-                  = I18n.t('messages.form.has_not_reply_yet', name: name)

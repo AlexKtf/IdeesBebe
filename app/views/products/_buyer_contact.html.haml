@@ -9,19 +9,17 @@
         - @status.messages.includes(:sender).order(:created_at).each do |message|
           - align = message.sender == current_user ? 'left' : 'right'
           = render 'messages/message', message: message, align: align
-      - if @status.can_send_message? current_user
+      - if @status.closed
+        .no-replied-yet
+          %i.icon.circular.inverted.emphasized.red.ban.circle
+          = I18n.t('common.status_closed')
+      - else
         = simple_form_for Message.new, url: product_messages_path(product_id: @product.id), remote: true, class: 'ui reply form' do |f|
           = f.input :content, label: false, required: false, as: :text
           = f.hidden_field :receiver_id, value: @product.owner.id
           = f.hidden_field :status_id, value: @status.id
           = f.button :button, class: 'ui fluid purple submit button' do
             = I18n.t('common.respond')
-      - elsif @status.closed
-        .no-replied-yet
-          %i.icon.circular.inverted.emphasized.red.ban.circle
-          = I18n.t('common.status_closed')
-      - else
-        peu plus répondre
   - else @status
     = simple_form_for Message.new, url: product_messages_path(product_id: @product.id) do |f|
       = f.input :content, label: false, as: :text

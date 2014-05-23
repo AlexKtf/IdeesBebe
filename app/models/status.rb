@@ -17,8 +17,6 @@ class Status < ActiveRecord::Base
   belongs_to :user
   has_many :messages
 
-  MESSAGE_LIMIT_STRAIGHT = 50
-
   after_update :mark_product_as_selled, if: [:done_changed?, :done]
 
   scope :pending, ->(user) { where('products.state = ?', 0).reject{ |status| status.last_message.sender_id == user.id or status.closed } }
@@ -39,8 +37,7 @@ class Status < ActiveRecord::Base
   end
 
   def can_send_message? user
-    return false if closed or product.selled?
-    messages.order('created_at DESC').limit(MESSAGE_LIMIT_STRAIGHT).reject{ |msg| msg.sender_id != user.id }.count < MESSAGE_LIMIT_STRAIGHT
+    not (closed or product.selled?)
   end
 
   def last_message
