@@ -10,13 +10,13 @@ class Notifier < ActionMailer::Base
     )
   end
 
-  def new_message message
+  def new_message_for(receiver, message)
     @message = message
-    @subject = message.from_owner? ? I18n.t('notifier.new_message.from_owner.subject') : I18n.t('notifier.new_message.from_buyer.subject')
-    @user = message.from_owner? ? message.receiver : message.sender
+    @receiver = receiver
+    @subject = I18n.t('notifier.new_message_for.subject')
     mail(
-      from: "Idees Bebe <#{@message.sender.slug}.#{@message.status.id}@user.dev-ideesbebe.com>",
-      to: @message.receiver.email,
+      from: "Idees Bebe <#{@message.sender.slug}@user.colamaya.com>",
+      to: @receiver.email,
       subject: @subject
     )
   end
@@ -53,10 +53,10 @@ class Notifier < ActionMailer::Base
     )
   end
 
-  def reminder_owner(message, time)
+  def reminder(message, time)
     return false if not message.need_to_remember?
     @message = message
-    @subject = I18n.t("notifier.reminder_owner_#{time}_days.subject")
+    @subject = I18n.t("notifier.reminder_#{time}_days.subject")
     @user = message.sender
     mail(
       to: @message.receiver.email,

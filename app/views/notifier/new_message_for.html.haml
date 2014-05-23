@@ -1,0 +1,6 @@
+%h1= @subject
+
+%p
+  = @message.content
+Vous pouvez repondre directement par email ou :
+= link_to 'Cliquez ici', product_url(@message.status.product.slug)

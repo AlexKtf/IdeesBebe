@@ -33,6 +33,5 @@ module IdeesBebe
     }
     
     I18n.default_locale = :fr
-
   end
 end

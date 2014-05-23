@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   protected
 
     def stored_location
-      session[:stored_location] = request.referrer if params[:action].to_sym == :new
+      session[:stored_location] ||= request.referrer if params[:action].to_sym == :new
     end
 
     def configure_permitted_parameters
