@@ -3,12 +3,7 @@ class StatusController < ApplicationController
   authorize_resource :status
   
   load_resource :product
-  load_resource :user, find_by: :slug, id_param: :id, except: :index
-
-  def index
-    raise CanCan::AccessDenied if not current_user.is_owner_of? @product
-    @status = @product.status.order('done DESC, closed ASC')
-  end
+  load_resource :user, find_by: :slug, id_param: :id
 
   def show
     raise CanCan::AccessDenied unless current_user.is_owner_of? @product or current_user == @user
@@ -24,8 +19,7 @@ class StatusController < ApplicationController
     @status.update(status_params)
     respond_to do |format|
       format.html do
-        link = current_user.is_owner_of?(@product) ? product_status_index_path(@product.slug) : product_status_path(@product.slug, current_user.slug)
-        redirect_to link
+        redirect_to product_status_path(@product.slug, @status.user.slug)
       end
       format.js
     end
