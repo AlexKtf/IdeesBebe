@@ -18,6 +18,7 @@ class MessagesController < ApplicationController
     status = message_params[:status_id].present? ? Status.find(message_params[:status_id]) : @product.status.build(user_id: current_user.id)
     status.save! if current_user.messages_sent.build(message_params).valid?
     message = status.messages.build(message_params.merge(sender_id: current_user.id))
+
     if message.save
       flash[:notice] = I18n.t('message.create.success')
     elsif message.errors.any?
@@ -35,6 +36,7 @@ class MessagesController < ApplicationController
         end
       end
       format.js do
+        flash.clear
         @message = message
       end
     end    
