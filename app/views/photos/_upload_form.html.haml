@@ -1,6 +1,5 @@
 = simple_form_for Photo.new, url: product_photos_path(product_id: @product.id, index: index), html: { multipart: true }, method: :post, remote: true do |f|
   .upload-back
     %i.icon.cloud.upload
-    = f.hidden_field :starred, value: false
     = f.input :file, label: false, as: :file, allow_blank: true, input_html: { class: 'ui button input-upload' }
     = f.button :submit, I18n.t('common.add'), class: 'submit-upload'

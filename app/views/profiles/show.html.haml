@@ -40,8 +40,8 @@
       .column
         = link_to product_path(product.slug) do
           .ui.segment.index-product.hoverable
-            - if product.starred_asset
-              = image_tag(product.starred_asset.url, alt: product.name, title: product.name)
+            - if product.photos.any?
+              = image_tag(product.photos.first.file.url, alt: product.name, title: product.name)
             - else
               = image_tag('product_default.png')
             .row.product-name

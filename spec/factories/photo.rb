@@ -8,7 +8,6 @@
 #  updated_at      :datetime
 #  referencer_id   :integer
 #  referencer_type :string(255)
-#  starred         :boolean          default(FALSE)
 #  uploading       :boolean          default(FALSE)
 #
 
@@ -17,10 +16,5 @@
 FactoryGirl.define do
   factory :photo do
     file "MyString"
-    starred false
-
-    trait :starred do
-      starred true
-    end
   end
 end

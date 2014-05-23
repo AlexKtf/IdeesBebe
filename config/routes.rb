@@ -9,7 +9,7 @@ IdeesBebe::Application.routes.draw do
   end
 
   resources :products, only: [] do
-    resources :photos, only: [:destroy, :update, :create], shallow: true
+    resources :photos, only: [:destroy, :create], shallow: true
     resources :status, only: [:index, :show, :update]
     resources :messages, only: :create
     resources :reports, only: :create

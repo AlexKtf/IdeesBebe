@@ -17,23 +17,13 @@ class PhotosController < ApplicationController
     respond_to do |format|
       format.html { redirect_to edit_product_path(@product.slug) }
       format.js do
-        if flash and not flash[:alert].empty?
+        if not @asset.file? or not @asset.valid?
           render js: "window.location = '#{edit_product_path(@product.slug)}'"
         else
           @index = params[:index]
         end
       end
     end
-  end
-
-  # PUT /photo/1
-  def update
-    if @photo.update(asset_params)
-      flash[:notice] = I18n.t('asset.become_starred.success')
-    else
-      flash[:alert] = I18n.t('asset.become_starred.error')
-    end
-    redirect_to edit_product_path(@photo.product.slug)
   end
 
   # DELETE /photo/1
@@ -49,6 +39,6 @@ class PhotosController < ApplicationController
   private
 
     def asset_params
-      params.require(:photo).permit(:file, :starred)
+      params.require(:photo).permit(:file)
     end
 end

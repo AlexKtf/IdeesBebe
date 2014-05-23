@@ -50,10 +50,6 @@ class Product < ActiveRecord::Base
     status.where(done: true).first.try(:user)
   end
 
-  def starred_asset
-    photos.where(starred: true).first.try(:file)
-  end
-
   def pending_status_for_owner
     status.reject{ |stat| stat.last_message.from_owner? or stat.closed or stat.product.selled? }
   end

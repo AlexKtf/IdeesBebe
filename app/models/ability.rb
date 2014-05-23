@@ -6,7 +6,7 @@ class Ability
     unless user.nil?
       can :manage, [Profile, Product], user_id: user.id
 
-      can [:destroy, :update], Photo, product: { user_id: user.id }
+      can [:destroy], Photo, product: { user_id: user.id }
       can :destroy, User, id: user.id
 
       can :create, Message

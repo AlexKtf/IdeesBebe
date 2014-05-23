@@ -1,14 +1,5 @@
 .item
   = image_tag(photo.file.edit_thumb, alt: @product.description, title: @product.description)
-  - if photo.starred?
-    .star.ui.left.corner.label.starpop{"data-content" => I18n.t('photos.starred'), "data-variation" => "inverted"}
-      %i.icon.star.colorstar
-  - else
-    .star.ui.left.corner.label.starpop{"data-content" => I18n.t('photos.not_starred'), "data-variation" => "inverted"}
-      = simple_form_for photo, url: photo_path(id: photo.id), method: :put do |f|
-        = f.hidden_field :starred, value: true
-        = button_tag(type: 'submit', class: 'transparent-button') do 
-          %i.icon.link.star
   .remove.red.ui.right.corner.label.starpop{"data-content" => 'Supprimer', "data-variation" => "inverted"}
     = simple_form_for photo, url: photo_path(id: photo.id), method: :delete do |f|
       = button_tag(type: 'submit', class: 'transparent-button') do 
