@@ -16,7 +16,7 @@
 /tmp
 
 .env
-config/database.yml
+/config/database.yml
 rspec.html
 coverage
 public/uploads
