@@ -37,6 +37,10 @@ describe Product do
     it 'fails with free product' do
       FactoryGirl.build(:product, name: "", price: 0, category_id: category.id).should_not be_valid
     end
+
+    it 'fails without departement' do
+      FactoryGirl.build(:product, dpt: "", category_id: category.id).should_not be_valid
+    end
   end
 
   describe '#pending_status_for_owner' do

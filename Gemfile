@@ -26,7 +26,7 @@ gem 'kaminari'
 gem 'sass-rails', '~> 4.0.0'
 gem 'haml-rails'
 gem 'simple_form'
-gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
+gem 'semantic-ui-sass', :git => 'http://github.com/doabit/semantic-ui-sass'
 gem 'blueimp-gallery'
 
 # JS
@@ -50,7 +50,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rspec-rails', '~> 2.0'
   gem "factory_girl_rails", ">= 4.0"
-  gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
+  gem 'capybara', :git => 'http://github.com/jnicklas/capybara.git'
   gem 'selenium-webdriver', '>= 2.35.1'
 end
 gem 'codeclimate-test-reporter', group: :test, require: nil

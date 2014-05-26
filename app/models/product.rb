@@ -36,6 +36,8 @@ class Product < ActiveRecord::Base
   validates :name, length: { minimum: 5, maximum: 60 }, format: { with: /\A[[:digit:][:alpha:]\s'\-_]*\z/u }
   validates :price, numericality: { only_integer: true, greater_than: 0 }, length: { minimum: 1, maximum: 9 }
   validates :category_id, presence: true
+  validates :dpt, length: { minimum:2, maximum: 3 }
+  validate :valid_dep
 
 
   before_save :to_slug, if: :name_changed?
