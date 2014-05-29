@@ -13,7 +13,7 @@
 
 require 'spec_helper'
 
-describe Message, :focus do
+describe Message do
   let(:product) { create :product, owner: user }
   let(:user) { create :user, response_time: 0 }
   let(:user2) { create :user, response_time: 0 }
