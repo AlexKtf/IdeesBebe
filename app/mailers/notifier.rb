@@ -53,10 +53,9 @@ class Notifier < ActionMailer::Base
     )
   end
 
-  def reminder(message, time)
-    return false if not message.need_to_remember?
+  def reminder(message, count)
     @message = message
-    @subject = I18n.t("notifier.reminder_#{time}_days.subject")
+    @subject = I18n.t('notifier.reminder.subject', count: count, sender: @message.sender.username, product: @message.product.name)
     @user = message.sender
     mail(
       to: @message.receiver.email,

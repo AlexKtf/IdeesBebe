@@ -169,8 +169,8 @@ fr:
       subject: 'Bienvenue chez Idees Bebe !'
     new_message_for:
       subject: 'Vous avez un message en attente'
-    reminder_3_days:
-      subject: 'Vous avez un message en attente depuis trois jours'
+    reminder:
+      subject: 'Vous avez %{count} message(s) %{sender} concernant %{product}'
     signalized_as_buyer:
       subject: 'Un vendeur vous à signaler acheteur de %{product}'
     product_not_available_anymore:

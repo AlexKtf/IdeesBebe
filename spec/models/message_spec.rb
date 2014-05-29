@@ -73,7 +73,7 @@ describe Message do
       subject
       Timecop.travel(subject.created_at + 3.days + 10.minutes) do
         Delayed::Worker.new.work_off
-        deliveries_with_subject(I18n.t('notifier.reminder_3_days.subject')).count.should == 1
+        deliveries_with_subject(I18n.t('notifier.reminder.subject', count: 1, sender: subject.sender.username, product: subject.product.name)).count.should == 1
       end
     end
 
@@ -86,7 +86,7 @@ describe Message do
         message
         Timecop.travel(subject.created_at + 3.days + 10.minutes) do
           Delayed::Worker.new.work_off
-          deliveries_with_subject(I18n.t('notifier.reminder_3_days.subject')).count.should == 0
+          deliveries_with_subject(I18n.t('notifier.reminder.subject', count: 1, sender: subject.sender.username, product: subject.product.name)).count.should == 0
         end
       end
     end
@@ -99,7 +99,7 @@ describe Message do
         status.update_attributes!(closed: true)
         Timecop.travel(subject.created_at + 3.days + 10.minutes) do
           Delayed::Worker.new.work_off
-          deliveries_with_subject(I18n.t('notifier.reminder_3_days.subject')).count.should == 0
+          deliveries_with_subject(I18n.t('notifier.reminder.subject', count: 1, sender: subject.sender.username, product: subject.product.name)).count.should == 0
         end
       end
     end
