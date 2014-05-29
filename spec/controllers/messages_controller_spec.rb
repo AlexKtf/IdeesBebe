@@ -14,17 +14,18 @@ describe MessagesController do
   end
 
   describe '#index' do
-    let(:product2) { create :product, owner: user, state: 1 }
+    let(:product2) { create :product, owner: user }
     let(:message) { create :message, status: status, sender_id: user2.id, receiver_id: user.id }
     let(:message2) { create :message, status: status, sender_id: user.id, receiver_id: user2.id }
-    let(:message3) { create :message, status: status2, sender_id: user3.id, receiver_id: user.id }
+    let(:message3) { build :message, status: status2, sender_id: user3.id, receiver_id: user.id }
     let(:status) { create :status, product_id: product.id, user_id: user2.id }
     let(:status2) { create :status, product_id: product2.id, user_id: user3.id, done: true }
 
     it 'assigns status' do
+      product2.selled!
       message
       message2
-      message3
+      message3.save(validate: false)
       get :index, profile_id: user.slug
       assigns(:status).should == [status2, status]
     end

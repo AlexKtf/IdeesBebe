@@ -12,15 +12,15 @@
             = link_to profile_messages_path(current_user.slug), class: "item teal #{'active' if @state.nil?}" do
               = I18n.t('messages.index.all_conversations')
               .ui.teal.label
-                = @user.conversations.to_a.count
+                = @user.status.count
             = link_to profile_messages_path(current_user.slug, state: 'pending'), class: "item teal #{'active' if @state == 'pending'}" do
               = I18n.t('messages.index.pending_conversations')
               .ui.teal.label
-                = @user.conversations.pending(@user).count
+                = @user.pending_status.to_a.count
             = link_to profile_messages_path(current_user.slug, state: 'archived'), class: "item teal #{'active' if @state == 'archived'}" do
               = I18n.t('messages.index.archived_conversations')
               .ui.teal.label
-                = @user.conversations.archived.count
+                = @user.archived_status.count
       .eleven.wide.column
         .ui.grid.one.column.doubling.index-messages
           .column
