@@ -137,26 +137,26 @@ fr:
         one:   '1 seconde'
         other: '%{count} seconds'
       less_than_x_minutes:
-        one:   'moins de 1 minute'
-        other: 'moins de %{count} minutes'
+        one:   '1 minute'
+        other: '%{count} minutes'
       x_minutes:
         one:   '1 minute'
         other: '%{count} minutes'
       about_x_hours:
-        one:   'environ 1 heure'
-        other: 'environ %{count} heures'
+        one:   '1 heure'
+        other: '%{count} heures'
       x_days:
         one:   '1 jour'
         other: '%{count} jours'
       about_x_months:
-        one:   'environ 1 mois'
-        other: 'environ %{count} mois'
+        one:   '1 mois'
+        other: '%{count} mois'
       x_months:
         one:   '1 mois'
         other: '%{count} mois'
       about_x_years:
-        one:   'environ 1 an'
-        other: 'environ %{count} ans'
+        one:   '1 an'
+        other: '%{count} ans'
       over_x_years:
         one:   'plus de 1 an'
         other: 'plus de %{count} ans'
@@ -167,15 +167,10 @@ fr:
   notifier:
     welcome:
       subject: 'Bienvenue chez Idees Bebe !'
-    new_message:
-      from_owner:
-        subject: 'Le propriètaire à répondu à votre message !'
-      from_buyer:
-        subject: 'Un acheteur potentiel souhaite vous contacter !'
-    reminder_owner_3_days:
-      subject: 'Vous avez un message en attente depuis trois jours'
-    reminder_owner_7_days:
-      subject: 'Vous avez un message en attente depuis sept jours !!'
+    new_message_for:
+      subject: 'Vous avez un message en attente'
+    reminder:
+      subject: 'Vous avez %{count} message(s) %{sender} concernant %{product}'
     signalized_as_buyer:
       subject: 'Un vendeur vous à signaler acheteur de %{product}'
     product_not_available_anymore:

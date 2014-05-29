@@ -78,7 +78,7 @@ describe StatusController do
       message2
       message3
       get :index, product_id: product.slug
-      assigns(:status).should == [status2, status3]
+      assigns(:status).should =~ [status2, status3]
     end
 
     context 'with product of another' do

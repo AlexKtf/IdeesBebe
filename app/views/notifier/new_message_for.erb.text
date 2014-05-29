@@ -1,0 +1,3 @@
+<%= @subject %>
+<%= @message.content %>
+<%= link_to 'Cliquez ici', product_url(@message.status.product.slug) %>
