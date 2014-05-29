@@ -69,8 +69,21 @@ class User < ActiveRecord::Base
     product.user_id == self.id
   end
 
-  def conversations
-    Status.joins(:user).joins(:product).where('products.user_id = ? OR statuses.user_id = ?', id, id).group('statuses.id')
+  def status
+    Status.joins(:product).where('products.user_id = ? OR statuses.user_id = ?', id, id)
+  end
+
+  def pending_status
+    Status.joins(:messages, :product)
+      .where('products.state = 0 AND (products.user_id = ? OR statuses.user_id = ?)', id, id)
+      .where('statuses.closed = ? AND statuses.done = ? AND messages.receiver_id = ?', false, false, id)
+      .group('statuses.id')
+  end
+
+  def archived_status
+    Status.joins(:product)
+      .where('products.user_id = ? OR statuses.user_id = ?', id, id)
+      .where('statuses.closed = ? OR statuses.done = ? OR products.state = 1', true, true)
   end
 
   def satisfaction_rating

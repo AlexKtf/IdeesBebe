@@ -23,10 +23,15 @@ class Message < ActiveRecord::Base
   
   validates :content, length: { minimum: 2 }, presence: true
 
+  before_create :can_communicate?
+
   after_create :reminder
   after_create :check_active_reminder
   after_create :response_time, if: [:from_owner?, :last_is_from_buyer?]
-  after_create :touch
+
+  def can_communicate?
+    status.can_send_message? sender    
+  end
 
   def from_owner?
     status.product.owner == sender

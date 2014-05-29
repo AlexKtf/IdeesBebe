@@ -21,9 +21,6 @@ class Status < ActiveRecord::Base
 
   after_update :mark_product_as_selled, if: [:done_changed?, :done]
 
-  scope :pending, ->(user) { where('products.state = ?', 0).reject{ |status| status.last_message.sender_id == user.id or status.closed } }
-  scope :archived, ->() { select{ |status| status.closed or status.product.selled? } }
-
   def mark_product_as_selled
     product.selled!
     Notifier.delay.signalized_as_buyer(user, product)
