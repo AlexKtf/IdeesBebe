@@ -35,7 +35,7 @@
   %h3.ui.header.block.black.profile-products-header
     %i.icon.suitcase
     = "Les produits de #{@user.username}"
-  .ui.grid.four.column.profile-products
+  .ui.grid.five.column.profile-products
     - @products.each do |product|
       .column
         = link_to product_path(product.slug) do

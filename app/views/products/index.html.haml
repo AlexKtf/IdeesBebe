@@ -38,7 +38,7 @@
                   .row.product-messages
                     - if not product.selled?
                       %i.icon.mail
-                      / = I18n.t('status.pending', count: product.pending_status_for_owner.count)
+                      = I18n.t('status.pending', count: product.pending_status_for_owner.count)
                     - else
                       .ui.inverted.icon
                         %i.icon.circular.inverted.emphasized.green.checkmark

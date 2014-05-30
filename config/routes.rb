@@ -19,7 +19,5 @@ IdeesBebe::Application.routes.draw do
     get '/:id', action: :show_subcategory, as: 'subcategory'
   end
 
-  resources :inbox, only: [:show, :create]
-
   devise_for :user, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 end
