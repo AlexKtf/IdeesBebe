@@ -9,8 +9,8 @@ IdeesBebe::Application.routes.draw do
   end
 
   resources :products, only: [] do
-    resources :photos, only: [:destroy, :create], shallow: true
-    resources :status, only: [:index, :show, :update]
+    resources :photos, only: [:destroy, :update, :create], shallow: true
+    resources :status, only: [:show, :update]
     resources :messages, only: :create
     resources :reports, only: :create
   end
@@ -21,3 +21,4 @@ IdeesBebe::Application.routes.draw do
 
   devise_for :user, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 end
+

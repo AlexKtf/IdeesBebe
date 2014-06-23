@@ -17,7 +17,6 @@ class Ability
         user.reports.where(product_id: report.product_id).count > 0
       end
 
-      can :index, Status, product: { owner_id: user.id }
       can :show, Status do |status|
         user.is_owner_of?(status.product) or status.user.id == user.id
       end

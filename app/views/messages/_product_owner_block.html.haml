@@ -2,7 +2,7 @@
 %h4.ui.top.attached.header
   %span.user= link_to other.username, profile_path(other.slug), class: 'underline'
   %span.intro= I18n.t('messages.index.about_my_product')
-  %span.product= link_to product.name, product_status_index_path(product.slug), class: 'underline'
+  %span.product= link_to product.name, product_path(product.slug), class: 'underline'
   %span.state
     - if product.selled?
       .ui.inverted.icon.starpop{ 'data-content' => I18n.t('common.product_selled'), 'data-variation' => 'inverted' }
