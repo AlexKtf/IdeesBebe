@@ -22,5 +22,6 @@ FactoryGirl.define do
     association :category
     price 1
     state 0
+    dpt '78'
   end
 end
