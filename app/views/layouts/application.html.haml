@@ -17,8 +17,12 @@
                 .item 
                   = current_user.username
                   .text
+                    - pending = current_user.pending_status.reject{ |status| status.last_message.sender_id == current_user.id }.count
+                    - if pending.nonzero?
+                      = link_to "#{pending} conversations en attentes", profile_messages_path(profile_id: current_user.slug, state: 'pending')
+                    - else
+                      0 conversation en attentes
                     %i.icon.mail
-
                 .item
                   .ui.dropdown.item
                     = image_tag "#{current_user.avatar}", style: "height:35px;"
@@ -38,7 +42,7 @@
                         Deconnexion
               .add-product
                 = link_to new_profile_product_path(current_user.slug) do
-                  .ui.button.small.labeled.icon
+                  .ui.button.small.labeled.icon.add-product-button
                     %i.icon.add
                     = I18n.t('product.add')
             - else

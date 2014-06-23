@@ -46,7 +46,7 @@
                   .row.product-actions
                     .ui.buttons
                       - if product.selled?
-                        = link_to product_status_path(product.slug), class: 'ui button starpop eye-button', 'data-content' => I18n.t('common.resee'), 'data-variation' => 'inverted' do
+                        = link_to product_path(product.slug), class: 'ui button starpop eye-button', 'data-content' => I18n.t('common.resee'), 'data-variation' => 'inverted' do
                           %i.icon.unhide
                       - else
                         = link_to edit_product_path(product.slug), class: 'ui button starpop setting-button', 'data-content' => I18n.t('common.edit'), 'data-variation' => 'inverted' do
