@@ -15,7 +15,7 @@ fr:
     price: 'Prix'
     description: 'Description'
     category: 'Categorie'
-    dpt: 'Ajoutez le code de votre département'
+    dpt: 'Code du département'
     contact: 'Contacter'
     respond: 'Répondre'
     resee: 'Revoir'

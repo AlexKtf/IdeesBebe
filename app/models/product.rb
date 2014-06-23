@@ -61,8 +61,8 @@ class Product < ActiveRecord::Base
   end
 
   def valid_dep
-    vd = (1..96).to_a + (971..974).to_a
-    if not ['2A', '2B'].include?(dpt.upcase) or not vd.include?(dpt.to_i)
+    valid_dpt = (1..96).to_a + (971..974).to_a
+    unless ['2A', '2B'].include?(dpt.upcase) or dpt.to_i.in?(valid_dpt)
       errors.add(:dpt, :invalid_dep)
     end
   end

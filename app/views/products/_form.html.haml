@@ -9,14 +9,15 @@
   = f.input :name, label: I18n.t('common.name')
 
   = f.input :description, label: I18n.t('common.description')
-  = f.input :dpt, label: I18n.t('common.dpt')
-  .ui.three.fields
+  .ui.four.fields
+    .field
+      = f.input :dpt, label: I18n.t('common.dpt')
     .field
       = f.input :price, label: I18n.t('common.price')
     .field.icon-field
       %i.icon.euro
     .field.category-field
-      Categorie : 
+      %label Categorie : 
       .ui.dropdown
         .text
           = cat ? cat.name : I18n.t('products.form.choose_category')
