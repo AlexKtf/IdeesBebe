@@ -15,6 +15,7 @@ fr:
     price: 'Prix'
     description: 'Description'
     category: 'Categorie'
+    dpt: 'Code du département'
     contact: 'Contacter'
     respond: 'Répondre'
     resee: 'Revoir'
@@ -113,6 +114,10 @@ fr:
               not_a_number: 'Un prix se compose uniquement de chiffres'
             category_id:
               blank: 'Une catégorie est obligatoire'
+            dpt:
+              too_short: 'un département a au moins 2 caractères'
+              too_long: 'utilisez le code de votre département'
+              invalid_dep: 'le code département est inexistant'
         message:
           attributes:
             content:

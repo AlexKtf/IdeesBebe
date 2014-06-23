@@ -61,7 +61,7 @@ describe ProductsController do
       let(:category) { create :category }
 
       it "redirect to edit" do
-        post :create, profile_id: subject.slug, product: {"name" => "testtest", "description" => "Great product for a golden test", "price" => 1, "category_id" => category.id }
+        post :create, profile_id: subject.slug, product: {"name" => "testtest", "description" => "Great product for a golden test", 'dpt' => '78', "price" => 1, "category_id" => category.id }
         expect(response).to redirect_to edit_product_path(Product.last.slug)
       end
     end

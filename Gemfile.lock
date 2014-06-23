@@ -1,12 +1,12 @@
 GIT
-  remote: git://github.com/doabit/semantic-ui-sass.git
+  remote: http://github.com/doabit/semantic-ui-sass
   revision: d8084d26f5f7a80aff157d7eb357022ac9379963
   specs:
     semantic-ui-sass (0.16.1.0)
       sass (~> 3.2)
 
 GIT
-  remote: git://github.com/jnicklas/capybara.git
+  remote: http://github.com/jnicklas/capybara.git
   revision: 2b778ae6dcdaab067edde542b5dd8f05df3ee3ba
   specs:
     capybara (2.2.0)

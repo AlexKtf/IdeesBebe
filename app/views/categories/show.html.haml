@@ -22,7 +22,7 @@
               %i.icon.euro
             .product-localisation
               %i.icon.map.marker
-              Paris
+              = product.dep
             .product-avalaibilty
               = I18n.t('products.show.avalaible_since')
               = distance_of_time_in_words(DateTime.now.to_i - product.created_at.to_i)

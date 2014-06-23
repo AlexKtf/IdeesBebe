@@ -36,6 +36,8 @@ class Product < ActiveRecord::Base
   validates :name, length: { minimum: 5, maximum: 60 }, format: { with: /\A[[:digit:][:alpha:]\s'\-_]*\z/u }
   validates :price, numericality: { only_integer: true, greater_than: 0 }, length: { minimum: 1, maximum: 9 }
   validates :category_id, presence: true
+  validates :dpt, length: { minimum:2, maximum: 3 }
+  validate :valid_dep
 
 
   before_save :to_slug, if: :name_changed?
@@ -52,5 +54,16 @@ class Product < ActiveRecord::Base
 
   def pending_status_for_owner
     status.reject{ |stat| stat.last_message.from_owner? or stat.closed or stat.product.selled? }
+  end
+
+  def dep
+    I18n.t("dptment.dep_#{dpt}")
+  end
+
+  def valid_dep
+    valid_dpt = (1..96).to_a + (971..974).to_a
+    unless ['2A', '2B'].include?(dpt.upcase) or dpt.to_i.in?(valid_dpt)
+      errors.add(:dpt, :invalid_dep)
+    end
   end
 end
