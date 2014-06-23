@@ -51,6 +51,4 @@
                       - else
                         = link_to edit_product_path(product.slug), class: 'ui button starpop setting-button', 'data-content' => I18n.t('common.edit'), 'data-variation' => 'inverted' do
                           %i.icon.settings
-                        = link_to product_status_path(product.slug), class: 'ui button starpop list-button', 'data-content' => I18n.t('common.my_contacts'), 'data-variation' => 'inverted' do
-                          %i.icon.users
         = paginate @products
