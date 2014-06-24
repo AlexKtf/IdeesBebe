@@ -1,5 +1,5 @@
 - name = current_user.is_owner_of?(@product) ? @user.username : current_user.username
-#conversation
+#status-show
   .ui.grid.stackable
     .row
       .sixteen.wide.column
@@ -29,16 +29,10 @@
                       %i.mail.icon
       .eleven.wide.column
         .ui.segment.piled.feed
-          .messages
-            - @messages.includes(:sender).each do |message|
-              - if message == @messages.last
-                #last-message
-              .row
-                - align = message.sender == current_user ? 'left' : 'right'
-                .message{ style: "text-align: #{align}; float: #{align}" }
-                  %p= message.sender == current_user ? I18n.t('messages.index.current_is_sender') : I18n.t('messages.index.current_is_not_sender', name: message.sender.username)
-                  %p= message.content
-                %div{ style: 'clear: both' }
+          #conversation.ui.comments
+            - @status.messages.includes(:sender).order(:created_at).each do |message|
+              - align = message.sender == current_user ? 'left' : 'right'
+              = render 'messages/message', message: message, align: align
           #block-form-status-show
             .cant-respond
               - if @product.selled?
@@ -46,13 +40,13 @@
               - elsif @status.closed
                 = render 'status_closed'
               - elsif @status.can_send_message? current_user
-                = simple_form_for Message.new, url: product_messages_path(product_id: @product.id), class: 'ui reply form' do |f|
-                  = f.input :content, label: '', as: :text
-                  = f.hidden_field :receiver_id, value: @receiver.id
-                  = f.hidden_field :status_id, value: @status.id
-                  = f.button :button, class: 'ui fluid purple labeled submit icon button' do
-                    %i.icon.edit
-                    = I18n.t('common.respond')
+                #conversation-form
+                  = simple_form_for Message.new, url: product_messages_path(product_id: @product.id), remote: true, class: 'ui reply form' do |f|
+                    = f.input :content, label: false, required: false, as: :text
+                    = f.hidden_field :receiver_id, value: current_user.is_owner_of?(@product) ? @status.user_id : @product.user_id
+                    = f.hidden_field :status_id, value: @status.id
+                    = f.button :button, class: 'ui fluid purple submit button' do
+                      = I18n.t('common.respond')
               - else
                 .status-situation
                   = I18n.t('messages.form.has_not_reply_yet', name: name)
