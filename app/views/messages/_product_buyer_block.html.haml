@@ -10,7 +10,7 @@
     - elsif status.closed
       .ui.inverted.icon.starpop{ 'data-content' => I18n.t('common.status_closed'), 'data-variation' => 'inverted' }
         %i.icon.circular.inverted.emphasized.red.ban.circle
-= link_to product_status_path(product_id: status.product.slug, id: status.user.slug, anchor: 'last-message'), class: 'last-message-content' do
+= link_to product_path(status.product.slug), class: 'last-message-content' do
   .ui.attached.segment.index-message
     %p.speaker
       = current_user == message.sender ? I18n.t('messages.index.current_is_sender') : I18n.t('messages.index.current_is_not_sender', name: message.sender.username)
