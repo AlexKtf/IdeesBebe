@@ -7,7 +7,14 @@ class MessagesController < ApplicationController
   def index
     raise CanCan::AccessDenied if @user != current_user
     @state = params[:state]
-    @status = (@user.try("#{@state}_status") || @user.status).order('statuses.updated_at DESC')
+    @pending_status = @user.pending_status.reject { |status| status.last_message.sender_id == @user.id }.sort_by(&:updated_at).reverse
+    @archived_status = @user.archived_status.order('statuses.updated_at DESC')
+    @all_status = @user.status.order('statuses.updated_at DESC')
+
+    unless @state.nil?
+      @status = @state == 'pending' ? @pending_status : @archived_status
+    end
+    @status ||= @all_status
   end
 
   def create

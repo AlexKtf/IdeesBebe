@@ -66,7 +66,7 @@ class Message < ActiveRecord::Base
 
     def check_active_reminder
       return if Delayed::Job.where(queue: "reminder_#{receiver_id}_#{status_id}").any?
-      delay(queue: "reminder_#{receiver_id}_#{status_id}", run_at: created_at + 3.days).late_reminder
+      delay(queue: "reminder_#{receiver_id}_#{status_id}", run_at: created_at + REMINDER_AFTER.days).late_reminder
     end
 
     def late_reminder
